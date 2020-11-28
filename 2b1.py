@@ -32,7 +32,7 @@ def week2b_ans_func(lightout4):
             qc.ccx(f[i], a[0],a[1])
             qc.cx(f[i], a[0])
     def rcounter(qc, f, a):
-        for i in range(len(f)):
+        for i in reversed(range(len(f))):
             qc.cx(f[i], a[0])
             qc.ccx(f[i], a[0],a[1])
             qc.mct([f[i],a[0],a[1]],a[2], mode = 'noancilla')
@@ -115,8 +115,8 @@ def week2b_ans_func(lightout4):
             qc.x(c)
 
             qc.mct(c, fl)
-            
             qc.x(c)
+            
             qc.cx(v[0], [c[0],c[1],c[3]])
         
             qc.cx(v[1], [c[1],c[0],c[2],c[4]])
@@ -140,12 +140,12 @@ def week2b_ans_func(lightout4):
         qc.barrier()
         
         # counter
-        counter(qc, c, a)
-        qc.x([a[0],a[1]])
+        counter(qc, v, a)
+        qc.x([a[2],a[3]])
         qc.ccx(a[2],a[3], fl[0])
-        qc.x([a[0],a[1]])
+        qc.x([a[2],a[3]])
         
-        counter(qc, c, a)
+        rcounter(qc, v, a)
         qc.barrier()
         
         # U-2a dagger
@@ -172,7 +172,7 @@ def week2b_ans_func(lightout4):
 
             qc.cx(v[8], [c[8],c[7],c[5]])
             qc.x(c)
-
+            
             qc.mct(c, fl)
             
             qc.x(c)
